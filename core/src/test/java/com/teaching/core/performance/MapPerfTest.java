@@ -58,7 +58,7 @@ public class MapPerfTest {
         Map<HpEnum, List<Integer>> enumMap = new EnumMap<>(HpEnum.class);
         //Then
         assertFaster( () -> populateMapWithEnum(enumMap, enumData),
-                () -> populateMapWithFilter(treeMap, fromEnumtoSet(HpEnum.class), data));
+                () -> populateMapWithFilter(treeMap, whiteList, data));
     }
 
     @ParameterizedTest
