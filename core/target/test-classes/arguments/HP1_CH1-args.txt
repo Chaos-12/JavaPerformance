@@ -1,0 +1,12 @@
+false, magic
+false, java
+false, beer
+false, math
+false, flower
+false, murcia
+true, night
+true, cat
+true, hagrid
+true, light
+true, blankets
+true, silver
