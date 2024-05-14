@@ -1,7 +1,5 @@
 package com.teaching.core.performance;
 
-import org.apache.commons.lang3.EnumUtils;
-
 import java.util.*;
 
 public class MapPerf {
@@ -24,11 +22,9 @@ public class MapPerf {
         return map;
     }
 
-    public static <E extends Enum<E>> Map<E, List<Integer>> populateMapWithEnum(Map<E, List<Integer>> map,
-                                                                                Class<E> enumClass,
-                                                                                String[] data) {
+    public static <E extends Enum<E>> Map<E, List<Integer>> populateMapWithEnum(Map<E, List<Integer>> map, E[] data) {
         for(int index=0; index < data.length; index++) {
-            E input = EnumUtils.getEnum(enumClass, data[index]);
+            E input = data[index];
             if (Objects.nonNull(input)) {
                 if (map.containsKey(input)) {
                     map.get(input).add(index);

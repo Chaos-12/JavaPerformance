@@ -2,7 +2,6 @@ package com.teaching.core.performance;
 
 import com.teaching.core.helpers.ResourceHelper;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -27,19 +26,18 @@ public class CollectionPerfTest {
 
     @BeforeAll
     public static void loadResources() {
+        log("Test for CollectionPerf:");
         //Load String[] from file
         data = logNanoTime("load data from file", () -> ResourceHelper.getResourceAsArray(dataPath));
         log("File loaded : %s words found", data.length);
 
         //Load ArrayList from 'data'
-        logNanoTime("load data into Collection" , () -> populateOneByOne(dataArrayList, data),
-                "ArrayList");
-        log("ArrayList contains %s words", dataArrayList.size());
+        logNanoTime("load data into ArrayList" , () -> populateOneByOne(dataArrayList, data));
+        log("ArrayList contains %s entries", dataArrayList.size());
 
         //Load HashSet from 'data'
-        logNanoTime("load data into Collection", () -> populateOneByOne(dataHashSet, data),
-                "HashSet");
-        log("HashSet contains %s words", dataHashSet.size());
+        logNanoTime("load data into HashSet", () -> populateOneByOne(dataHashSet, data));
+        log("HashSet contains %s entries", dataHashSet.size());
     }
 
     @Test

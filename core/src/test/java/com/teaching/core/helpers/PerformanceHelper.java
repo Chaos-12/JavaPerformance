@@ -5,7 +5,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import java.util.function.Supplier;
 
 import static com.teaching.core.helpers.LogHelper.log;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class PerformanceHelper {
 
@@ -38,8 +38,9 @@ public class PerformanceHelper {
     public static void assertFaster(Supplier<?> fasterFunction, Supplier<?> slowerFunction) {
         long fasterTime = getNanoTime(fasterFunction);
         long slowerTime = getNanoTime(slowerFunction);
-        assertTrue(fasterTime < slowerTime,
-                String.format("First function should be faster, but time spent in each method is %s and %s ns, respectively.", fasterTime, slowerTime));
+        assertThat(fasterTime)
+                .withFailMessage("First function should be faster, but time spent in each method is %s and %s ns, respectively.", fasterTime, slowerTime)
+                .isLessThan(slowerTime);
     }
 
 }
